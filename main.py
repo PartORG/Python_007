@@ -4,12 +4,7 @@ import file_system as fs
 
 
 def main():
-    # do smth
     arguments = sys.argv
-
-    print "Passed arguments: ", arguments
-    print "CWD: ", os.getcwd()
-
     file_path = arguments[1]
     command = ''
 
@@ -17,18 +12,24 @@ def main():
         command = raw_input('What command to perform:\n\n'
                         '* create file (C)\n'
                         '* delete file (D)\n'
+                        '* list files in provided folder (L)\n'
                         '* read file or directory (R)\n'
                         '* show metadata of file (M)\n'
                         '* quit (Q)\n\n').lower()
         if command == 'c':
             text = raw_input('Enter a text to be stored in new file:\n')
             fs.create(file_path, text)
-        elif command == 'r':
+        elif command == 'l':
             fs.read(file_path)
+        elif command == 'r':
+            file_name = raw_input('Enter a file name to read:\n')
+            fs.read(file_path, file_name)
         elif command == 'd':
-            fs.delete(file_path)
+            file_name = raw_input('Enter a file name to delete:\n')
+            fs.delete(file_path, file_name)
         elif command == 'm':
-            fs.get_metadata(file_path)
+            file_name = raw_input('Enter a file name to get metadata:\n')
+            fs.get_metadata(file_path, file_name)
         else:
             print "wrong command. Try again."
 
