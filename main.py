@@ -1,9 +1,15 @@
 import sys
-import os
 import file_system as fs
 
 
 def main():
+    """
+    Main function of a File System project.
+    It shows a menu in console with discribed functionality.
+
+    Input: it takes Path as CLI parameter.
+    Output: - None -
+    """
     arguments = sys.argv
     file_path = arguments[1]
     command = ''

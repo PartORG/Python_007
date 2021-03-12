@@ -1,8 +1,16 @@
+# Set of main functions for File System App
 import os
 import utils
 
 
 def create(file_path, text):
+    """
+    This function creates a new text file in provided path with randomly generated name.
+
+    Input: file_path - path where to store file.
+           text - Data to store in file.
+    Output: - None -
+    """
     print "called create function"
     file_name = os.path.join(file_path, utils.generate_random_name())
     with open(file_name, "at") as f:
@@ -12,6 +20,13 @@ def create(file_path, text):
 
 
 def delete(file_path, file_name=None):
+    """
+    This function deletes provided file from provided path.
+
+    Input: file_path - path to the file.
+           file_name - name of a file to delete.
+    Output: - None -
+    """
     print "called delete function"
     if file_name is not None:
         data = os.path.join(file_path, file_name)
@@ -30,6 +45,14 @@ def delete(file_path, file_name=None):
 
 
 def read(file_path, file_name=None):
+    """
+    This function displays a content of a provided file in provided path.
+    If file name was not provided, function displays a list of all files in provided path.
+
+    Input: file_path - folder path.
+           file_name - name of a file to read.
+    Output: File content in CLI or list of files in CLI.
+    """
     print "called read function"
     if file_name is not None:
         data = os.path.join(file_path, file_name)
@@ -49,6 +72,14 @@ def read(file_path, file_name=None):
 
 
 def get_metadata(file_path, file_name=None):
+    """
+    This function displays a metadata of a provided file from provided folder path.
+
+    Input: file_path - path to the file.
+           file_name - name of a file to get metadata for.
+    Output: Display metadata of file in CLI.
+    """
+
     print "called get_metadata function"
     if file_name is not None:
         data = os.path.join(file_path, file_name)
