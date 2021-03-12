@@ -1,5 +1,8 @@
 import sys
 import file_system as fs
+import logging
+
+logging.basicConfig(level=logging.INFO)
 
 
 def main():
@@ -15,13 +18,15 @@ def main():
     command = ''
 
     while command != 'q':
-        command = raw_input('What command to perform:\n\n'
-                        '* create file (C)\n'
-                        '* delete file (D)\n'
-                        '* list files in provided folder (L)\n'
-                        '* read file or directory (R)\n'
-                        '* show metadata of file (M)\n'
-                        '* quit (Q)\n\n').lower()
+        command = raw_input(
+            '''What command to perform:
+            * create file (C)
+            * delete file (D)
+            * list files in provided folder (L)
+            * read file or directory (R)
+            * show metadata of file (M)
+            * quit (Q)\n\n''').strip().lower()
+
         if command == 'c':
             text = raw_input('Enter a text to be stored in new file:\n')
             fs.create(file_path, text)
@@ -36,10 +41,12 @@ def main():
         elif command == 'm':
             file_name = raw_input('Enter a file name to get metadata:\n')
             fs.get_metadata(file_path, file_name)
+        elif command == 'q':
+            logging.info("...closing app.")
         else:
-            print "wrong command. Try again."
+            logging.info("wrong command. Try again.")
 
-    print "Bye! Thank you for using this app."
+    logging.info("Bye! Thank you for using this app.")
 
 
 if __name__ == '__main__':
