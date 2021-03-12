@@ -4,20 +4,16 @@ import utils
 
 def create(file_path, text):
     print "called create function"
-    file_name = os.path.join(file_path, utils.random_name())
-    if os.path.exists(file_path):
-        with open(file_name, "at") as f:
-            f.write(text)
-    else:
-        with open(file_name, "wt") as f:
-            f.write(text)
+    file_name = os.path.join(file_path, utils.generate_random_name())
+    with open(file_name, "at") as f:
+        f.write(text)
     print "file created"
     print "-" * 20
 
 
 def delete(file_path, file_name=None):
     print "called delete function"
-    if file_name:
+    if file_name is not None:
         data = os.path.join(file_path, file_name)
         if os.path.exists(data):
             if os.path.isfile(data):
@@ -27,7 +23,7 @@ def delete(file_path, file_name=None):
         else:
             print "File does not exist.\nNothing was deleted."
     else:
-        if os.path.isfile(file_path):
+        if os.path.isdir(file_path):
             os.rmdir(file_path)
             print "folder deleted"
             print "-" * 20
@@ -35,7 +31,7 @@ def delete(file_path, file_name=None):
 
 def read(file_path, file_name=None):
     print "called read function"
-    if file_name:
+    if file_name is not None:
         data = os.path.join(file_path, file_name)
         if os.path.exists(data):
             if os.path.isfile(data):
@@ -54,7 +50,7 @@ def read(file_path, file_name=None):
 
 def get_metadata(file_path, file_name=None):
     print "called get_metadata function"
-    if file_name:
+    if file_name is not None:
         data = os.path.join(file_path, file_name)
         if os.path.exists(data):
             metadata = os.stat(data)
@@ -64,4 +60,4 @@ def get_metadata(file_path, file_name=None):
         else:
             print "File does not exist."
     else:
-        print "File name was not provided. Nothing to delete."
+        print "File name was not provided."
