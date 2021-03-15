@@ -39,7 +39,7 @@ def delete(file_path, file_name=None):
                 logging.info("file deleted")
                 logging.info("-" * 20)
         else:
-            logging.error( "File does not exist.\nNothing was deleted.")
+            logging.error("File does not exist.\nNothing was deleted.")
     else:
         if os.path.isdir(file_path):
             os.rmdir(file_path)
@@ -59,12 +59,11 @@ def read(file_path, file_name=None):
 
     if file_name is not None:
         data = os.path.join(file_path, file_name)
-        if os.path.exists(data):
-            if os.path.isfile(data):
-                with open(data, "r") as f:
-                    file_data = f.read()
-                logging.info("File content:\n %s" % file_data)
-                logging.info("-" * 20)
+        if os.path.isfile(data):
+            with open(data, "r") as f:
+                file_data = f.read()
+            logging.info("File content:\n %s" % file_data)
+            logging.info("-" * 20)
         else:
             logging.error("File does not exist.")
     else:
@@ -91,7 +90,7 @@ def get_metadata(file_path, file_name=None):
             metadata = convert_stat_to_dict(os.stat(data))
             logging.info("Metadata of file:\n")
             for k, v in metadata.iteritems():
-                logging.info("\t\t%s: \t%s" % (str(k), str(v)))
+                logging.info("\t\t%s: \t%s" % (k, v))
             logging.info("-" * 20)
         else:
             logging.error("File does not exist.")
