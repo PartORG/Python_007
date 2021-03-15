@@ -1,6 +1,6 @@
 # Set of main functions for File System App
 import os
-import utils
+import Utils.utils as utils
 import logging
 
 logging.basicConfig(level=logging.INFO)
@@ -20,6 +20,7 @@ def create(file_path, text):
         f.write(text)
     logging.info("file created: %s" % file_name)
     logging.info("-" * 20)
+    return True
 
 
 def delete(file_path, file_name=None):
