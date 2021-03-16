@@ -1,4 +1,6 @@
 # imports here
+import hashlib
+import Crypto as cr
 
 
 class BaseCipher:
