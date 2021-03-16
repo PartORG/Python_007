@@ -39,13 +39,16 @@ def delete(file_path, file_name=None):
                 os.remove(data)
                 logging.info("file deleted")
                 logging.info("-" * 20)
+                return 0
         else:
             logging.error("File does not exist.\nNothing was deleted.")
+            return -1
     else:
         if os.path.isdir(file_path):
             os.rmdir(file_path)
             logging.info("folder deleted")
             logging.info("-" * 20)
+            return 0
 
 
 def read(file_path, file_name=None):
@@ -65,8 +68,10 @@ def read(file_path, file_name=None):
                 file_data = f.read()
             logging.info("File content:\n %s" % file_data)
             logging.info("-" * 20)
+            return file_data
         else:
             logging.error("File does not exist.")
+            return -1
     else:
         if os.path.isdir(file_path):
             files_list = os.listdir(file_path)
@@ -74,6 +79,7 @@ def read(file_path, file_name=None):
             for file in files_list:
                 logging.info("%s" % file)
             logging.info("-" * 20)
+            return files_list
 
 
 def get_metadata(file_path, file_name=None):
@@ -93,10 +99,13 @@ def get_metadata(file_path, file_name=None):
             for k, v in metadata.iteritems():
                 logging.info("\t\t%s: \t%s" % (k, v))
             logging.info("-" * 20)
+            return metadata
         else:
             logging.error("File does not exist.")
+            return -1
     else:
         logging.error("File name was not provided.")
+        return -1
 
 
 def convert_stat_to_dict(data):
@@ -106,5 +115,9 @@ def convert_stat_to_dict(data):
     Input: data - nt.stat_result object
     Output: dictionary of converted data.
     """
-
-    return {k: getattr(data, k) for k in dir(data) if k.startswith('st_')}
+    try:
+        converted_data = {k: getattr(data, k) for k in dir(data) if k.startswith('st_')}
+        return converted_data
+    except Exception as er:
+        logging.error(er)
+        return -1
