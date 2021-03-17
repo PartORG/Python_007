@@ -4,7 +4,7 @@ import logging
 
 import Utils.utils as utils
 
-from Crypto import BaseCipher, AES_cipher, RSA_cipher
+from Crypto_system.ciphers import BaseCipher, AESCipher, RSACipher
 
 logging.basicConfig(level=logging.INFO)
 
@@ -21,7 +21,7 @@ def create(file_path, text):
     file_name = os.path.join(file_path, utils.generate_random_name())
     with open(file_name, "at") as f:
         f.write(text)
-    logging.info("file created: %s" % file_name)
+    logging.info(f"file created: {file_name}")
     logging.info("-" * 20)
     return True
 
@@ -69,7 +69,7 @@ def read(file_path, file_name=None):
         if os.path.isfile(data):
             with open(data, "r") as f:
                 file_data = f.read()
-            logging.info("File content:\n %s" % file_data)
+            logging.info(f"File content:\n {file_data}")
             logging.info("-" * 20)
             return file_data
         else:
@@ -80,7 +80,7 @@ def read(file_path, file_name=None):
             files_list = os.listdir(file_path)
             logging.info("list of files:\n")
             for file in files_list:
-                logging.info("%s" % file)
+                logging.info(f"{file}")
             logging.info("-" * 20)
             return files_list
 
@@ -99,8 +99,8 @@ def get_metadata(file_path, file_name=None):
         if os.path.exists(data):
             metadata = convert_stat_to_dict(os.stat(data))
             logging.info("Metadata of file:\n")
-            for k, v in metadata.iteritems():
-                logging.info("\t\t%s: \t%s" % (k, v))
+            for k, v in metadata.items():
+                logging.info(f"\t\t{k}: \t{v}")
             logging.info("-" * 20)
             return metadata
         else:

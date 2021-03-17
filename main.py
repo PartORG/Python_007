@@ -18,7 +18,7 @@ def main():
     command = ''
 
     while command != 'q':
-        command = raw_input(
+        command = input(
             '''What command to perform:
             * create file (C)
             * delete file (D)
@@ -28,18 +28,18 @@ def main():
             * quit (Q)\n\n''').strip().lower()
 
         if command == 'c':
-            text = raw_input('Enter a text to be stored in new file:\n')
+            text = input('Enter a text to be stored in new file:\n')
             fs.create(file_path, text)
         elif command == 'l':
             fs.read(file_path)
         elif command == 'r':
-            file_name = raw_input('Enter a file name to read:\n')
+            file_name = input('Enter a file name to read:\n')
             fs.read(file_path, file_name)
         elif command == 'd':
-            file_name = raw_input('Enter a file name to delete:\n')
+            file_name = input('Enter a file name to delete:\n')
             fs.delete(file_path, file_name)
         elif command == 'm':
-            file_name = raw_input('Enter a file name to get metadata:\n')
+            file_name = input('Enter a file name to get metadata:\n')
             fs.get_metadata(file_path, file_name)
         elif command == 'q':
             logging.info("...closing app.")

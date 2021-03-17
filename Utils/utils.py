@@ -13,5 +13,5 @@ def generate_random_name():
     Output: Generated text file name with extension (.txt).
     """
 
-    file_name = ''.join(random.choice(string.ascii_lowercase) for i in range(16)) + '.txt'
+    file_name = f"{''.join(random.choice(string.ascii_lowercase) for _ in range(16))}.txt"
     return file_name
