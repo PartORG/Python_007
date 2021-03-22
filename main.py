@@ -21,8 +21,6 @@ def main():
 
     # Handler
     handler = Handler()
-
-    # Server creation
     app = web.Application()
     app.add_routes([
         web.get("/files/list", handler.get_file_list(file_path)),
