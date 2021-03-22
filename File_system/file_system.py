@@ -17,8 +17,9 @@ def create(file_path, text):
            text - Data to store in file.
     Output: - None -
     """
-
+    # cryptograpth = AESCipher()
     file_name = os.path.join(file_path, utils.generate_random_name())
+    # cryptograpth.encrypt(file_name, text.encode())
     with open(file_name, "at") as f:
         f.write(text)
     logging.info(f"file created: {file_name}")
@@ -63,10 +64,11 @@ def read(file_path, file_name=None):
            file_name - name of a file to read.
     Output: File content in CLI or list of files in CLI.
     """
-
+    # cryptograph = AESCipher()
     if file_name is not None:
         data = os.path.join(file_path, file_name)
         if os.path.isfile(data):
+            # file_data = cryptograph.decrypt(data)
             with open(data, "r") as f:
                 file_data = f.read()
             logging.info(f"File content:\n {file_data}")
